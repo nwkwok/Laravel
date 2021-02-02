@@ -19,7 +19,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        dd();
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
