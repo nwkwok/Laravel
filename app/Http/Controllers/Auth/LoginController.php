@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['guest']);
+    }
     public function index()
     {
         return view('auth.login');
@@ -15,12 +19,13 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        dd();
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        if (!Auth::attempt($request->only('email', 'password'), $request->remember)) {
             return back()->with('status', 'Invalid Login Details');
             // redirects to last page visited
             // Passes a flash message that's binded to 'status' that
