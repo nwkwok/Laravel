@@ -12,8 +12,12 @@ class Post extends Model
 
     protected $fillable = [
         'body',
-        'user_id'
     ];
+
+    public function likedBy(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id); // Laravel collection method
+    }
 
     public function user()
     {
