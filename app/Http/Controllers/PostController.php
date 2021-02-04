@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::get(); // returns collection
+        $posts = Post::paginate(2); // returns collection
         return view('posts.index', [
             'posts' => $posts
         ]);
