@@ -9,9 +9,10 @@ use App\Mail\PostLiked;
 
 class PostLikeController extends Controller
 {
+
     public function __construct()
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth'])->only(['store', 'destroy']);
     }
 
     public function store(Post $post, Request $request)
